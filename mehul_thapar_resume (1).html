@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mehul Thapar — Commerce & Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ── Reset & Variables ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #050b14;
+  --navy2: #08111e;
+  --navy3: #0c1829;
+  --cream: #f5f0e8;
+  --cream2: #ede7d8;
+  --cream3: #e4dccb;
+  --gold: #b8965a;
+  --gold-light: #d4b07a;
+  --gold-muted: rgba(184,150,90,0.25);
+  --green: #2d4a3e;
+  --green2: #3a5c4d;
+  --fg: #f5f0e8;
+  --fg-muted: #a8bbc9;
+  --fg-subtle: #5e7a8a;
+  --border: rgba(184,150,90,0.18);
+  --border-bright: rgba(184,150,90,0.4);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--fg);
+  font-family: 'Jost', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ── Grain ── */
+.grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.028;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: rgba(184,150,90,0.35); border-radius: 10px; }
+
+/* ── Typography ── */
+.serif { font-family: 'Cormorant Garamond', serif; }
+.section-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--gold);
+}
+.gradient-text {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.shimmer-text {
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 30%, var(--cream) 60%, var(--gold) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+
+/* ── Reveal ── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Glass ── */
+.glass {
+  background: rgba(5,11,20,0.9);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+}
+
+/* ── Thin rule ── */
+.rule {
+  width: 32px; height: 1px; background: var(--gold); opacity: 0.6; margin: 1rem 0;
+}
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1rem;
+}
+nav {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  border-radius: 4px; padding: 0.75rem 1.75rem;
+  transition: all 0.5s ease;
+}
+nav.scrolled { background: rgba(5,11,20,0.94); backdrop-filter: blur(24px); border: 1px solid var(--border); }
+.nav-logo { display: flex; align-items: center; gap: 14px; cursor: pointer; }
+.logo-mark {
+  width: 36px; height: 36px; border-radius: 2px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(184,150,90,0.1); border: 1px solid rgba(184,150,90,0.4);
+  font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 600; color: var(--gold);
+  transition: all 0.3s; letter-spacing: 0.05em;
+}
+.logo-mark:hover { background: rgba(184,150,90,0.18); }
+.logo-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 500; letter-spacing: 0.06em; color: var(--cream); }
+.logo-name span { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 2.25rem; }
+.nav-links a {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--fg-muted); transition: color 0.2s; position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px;
+  background: var(--gold); transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.hire-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; border: 1px solid rgba(184,150,90,0.5);
+  color: var(--gold); padding: 0.5rem 1.4rem; border-radius: 2px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: all 0.3s; cursor: pointer;
+}
+.hire-btn:hover { background: rgba(184,150,90,0.12); border-color: var(--gold); }
+.menu-btn {
+  display: none; background: none; border: 1px solid var(--border);
+  border-radius: 2px; padding: 8px; color: var(--fg); cursor: pointer;
+}
+.mobile-menu {
+  display: none; position: fixed; top: 80px; left: 1rem; right: 1rem;
+  background: rgba(5,11,20,0.97); backdrop-filter: blur(24px);
+  border: 1px solid var(--border); border-radius: 4px;
+  padding: 1.5rem; flex-direction: column; gap: 1rem; z-index: 99;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 500; color: var(--fg-muted); transition: color 0.2s;
+}
+.mobile-menu a:last-child { border: none; }
+.mobile-menu a:hover { color: var(--gold); }
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+#hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 9rem 1.5rem 6rem; overflow: hidden;
+}
+.hero-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 70% 55% at 50% -5%, rgba(184,150,90,0.07) 0%, rgba(5,11,20,0) 65%);
+}
+.hero-line-left {
+  position: absolute; left: 3rem; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(184,150,90,0.15), transparent);
+  pointer-events: none;
+}
+.hero-line-right {
+  position: absolute; right: 3rem; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(184,150,90,0.15), transparent);
+  pointer-events: none;
+}
+
+/* Arch */
+.arch-container {
+  position: absolute; top: 7rem; left: 0; right: 0;
+  margin-left: auto; margin-right: auto;
+  width: 100%; max-width: 1100px;
+  height: 360px; pointer-events: none;
+}
+.arch-img {
+  width: 124px; height: 124px; border-radius: 2px; overflow: hidden;
+  position: absolute;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(184,150,90,0.2);
+  opacity: 0; transition: box-shadow 0.5s ease;
+  cursor: pointer; pointer-events: auto;
+}
+.arch-img::after {
+  content: ''; position: absolute; inset: 0;
+  border: 1px solid rgba(184,150,90,0.2); border-radius: 2px; pointer-events: none;
+}
+.arch-img img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.7) brightness(0.88); }
+.arch-img:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.65), 0 0 24px rgba(184,150,90,0.25);
+  z-index: 50;
+}
+.arch-img:hover img { filter: saturate(0.85) brightness(0.95); }
+
+.hero-content {
+  position: relative; z-index: 10;
+  max-width: 860px; text-align: center;
+  margin-top: 10rem;
+}
+.status-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(5,11,20,0.7); border: 1px solid var(--border);
+  border-radius: 2px; padding: 7px 18px; margin-bottom: 2rem;
+}
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(184,150,90,0.7);
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+.status-badge span { font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--fg-muted); }
+
+h1.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.8rem, 7.5vw, 5.5rem);
+  font-weight: 300; letter-spacing: -0.01em; line-height: 1.08;
+  margin-bottom: 1.5rem; color: var(--cream);
+  opacity: 0; transform: translateY(28px);
+}
+.hero-desc {
+  font-size: clamp(0.82rem, 1.4vw, 0.95rem);
+  color: var(--fg-muted); max-width: 600px; margin: 0 auto 2.5rem;
+  line-height: 1.85; letter-spacing: 0.03em;
+  opacity: 0; transform: translateY(28px);
+}
+.hero-btns {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0; transform: translateY(28px);
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold); color: var(--navy);
+  padding: 0.9rem 2rem; border-radius: 2px;
+  font-weight: 600; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: all 0.3s;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(184,150,90,0.4); background: transparent; color: var(--cream);
+  padding: 0.9rem 2rem; border-radius: 2px;
+  font-weight: 500; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  transition: all 0.3s;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+.hero-stats {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 2.5rem 3.5rem; margin-top: 4rem;
+}
+.stat-item { text-align: center; }
+.stat-value { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500; color: var(--gold); letter-spacing: 0.02em; }
+.stat-label { font-size: 9.5px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: var(--fg-subtle); margin-top: 4px; }
+
+.scroll-indicator {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0.35;
+}
+.scroll-indicator span { font-size: 9px; text-transform: uppercase; letter-spacing: 0.3em; color: var(--fg-subtle); }
+.scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, rgba(184,150,90,0.6), transparent); }
+
+/* ══════════════════════════════════════
+   METRICS
+══════════════════════════════════════ */
+#metrics {
+  padding: 6rem 1.5rem; background: var(--navy); position: relative; overflow: hidden;
+}
+.grid-bg {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.025;
+  background-image: linear-gradient(rgba(184,150,90,1) 1px, transparent 1px), linear-gradient(90deg, rgba(184,150,90,1) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+.section-header { max-width: 520px; margin-bottom: 3.5rem; }
+.section-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 300; letter-spacing: 0.01em; line-height: 1.2; margin-top: 0.75rem; color: var(--cream); }
+.metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; max-width: 1200px; margin: 0 auto; background: var(--border); border: 1px solid var(--border); }
+@media (min-width: 768px) { .metrics-grid { grid-template-columns: repeat(4, 1fr); } }
+.metric-card {
+  background: var(--navy2); padding: 1.75rem 1.5rem; position: relative; overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.2,0.8,0.2,1);
+}
+.metric-card::before {
+  content: ''; position: absolute; top: 0; left: 1.5rem; right: 1.5rem; height: 1px;
+  background: var(--gold); opacity: 0; transition: opacity 0.4s;
+}
+.metric-card:hover { background: var(--navy3); }
+.metric-card:hover::before { opacity: 0.6; }
+.metric-icon { font-size: 14px; color: rgba(184,150,90,0.3); margin-bottom: 0.75rem; transition: color 0.3s; font-family: 'Cormorant Garamond', serif; }
+.metric-card:hover .metric-icon { color: rgba(184,150,90,0.6); }
+.metric-value { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.9rem, 4vw, 2.4rem); font-weight: 400; color: var(--gold); letter-spacing: 0.01em; margin-bottom: 4px; }
+.metric-label { font-size: 12px; font-weight: 500; color: var(--cream); margin-bottom: 4px; letter-spacing: 0.03em; }
+.metric-sub { font-size: 11px; color: var(--fg-subtle); line-height: 1.5; letter-spacing: 0.02em; }
+
+/* ══════════════════════════════════════
+   EXPERIENCE
+══════════════════════════════════════ */
+#experience {
+  padding: 6rem 1.5rem; background: var(--navy2); position: relative; overflow: hidden;
+}
+.exp-list { display: flex; flex-direction: column; gap: 1px; max-width: 1200px; margin: 0 auto; background: var(--border); border: 1px solid var(--border); }
+.exp-card {
+  background: var(--navy2); padding: 2rem 2.25rem; position: relative; overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.2,0.8,0.2,1);
+}
+.exp-card::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: var(--gold); opacity: 0; transition: opacity 0.4s;
+}
+.exp-card:hover { background: var(--navy3); }
+.exp-card:hover::before { opacity: 0.7; }
+.exp-inner { display: flex; gap: 1.75rem; align-items: flex-start; flex-wrap: wrap; }
+.exp-badge {
+  width: 52px; height: 52px; border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 16px;
+  flex-shrink: 0; border: 1px solid;
+}
+.exp-body { flex: 1; min-width: 0; }
+.exp-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+.exp-role { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 500; color: var(--cream); letter-spacing: 0.02em; }
+.exp-company { font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; margin-top: 3px; }
+.exp-meta { text-align: right; }
+.exp-period { font-size: 11px; font-weight: 500; color: var(--fg-muted); letter-spacing: 0.08em; }
+.exp-location { font-size: 10px; color: var(--fg-subtle); margin-top: 2px; letter-spacing: 0.08em; }
+.exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem; }
+.exp-bullets li { display: flex; align-items: flex-start; gap: 14px; font-size: 13.5px; color: var(--fg-muted); line-height: 1.7; letter-spacing: 0.01em; }
+.bullet-dot { width: 3px; height: 3px; border-radius: 50%; flex-shrink: 0; margin-top: 9px; background: var(--gold); }
+.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  display: inline-flex; align-items: center;
+  padding: 4px 12px; border-radius: 2px;
+  font-size: 9.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+  background: rgba(184,150,90,0.07); color: var(--gold); border: 1px solid rgba(184,150,90,0.22);
+}
+
+/* ══════════════════════════════════════
+   PROJECTS
+══════════════════════════════════════ */
+#projects {
+  padding: 6rem 1.5rem; background: var(--navy); position: relative; overflow: hidden;
+}
+.bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1px; max-width: 1200px; margin: 0 auto; background: var(--border); border: 1px solid var(--border); }
+.project-card {
+  padding: 2.25rem; position: relative; overflow: hidden;
+  background: var(--navy2); min-height: 280px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.2,0.8,0.2,1);
+}
+.project-card:hover { background: var(--navy3); }
+.project-card .hover-glow {
+  position: absolute; inset: 0; opacity: 0; pointer-events: none;
+  transition: opacity 0.5s;
+}
+.project-card:hover .hover-glow { opacity: 1; }
+.project-card .top-line {
+  position: absolute; top: 0; left: 2.25rem; right: 2.25rem; height: 1px;
+  opacity: 0; transition: opacity 0.5s;
+}
+.project-card:hover .top-line { opacity: 0.8; }
+.accent-dot {
+  width: 6px; height: 6px; border-radius: 50%; position: absolute; top: 1.75rem; right: 1.75rem;
+}
+.project-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 500; color: var(--cream); margin-bottom: 6px; line-height: 1.3; }
+.project-subtitle { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.project-desc { font-size: 13px; color: var(--fg-muted); line-height: 1.75; letter-spacing: 0.01em; }
+.project-stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.stat-block { }
+.s-val { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; }
+.s-lbl { font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); margin-top: 2px; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.proj-tag {
+  padding: 4px 12px; border-radius: 2px;
+  font-size: 9.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.span-4 { grid-column: span 4; }
+.span-5 { grid-column: span 5; }
+.span-7 { grid-column: span 7; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+@media (max-width: 900px) {
+  .span-4, .span-5, .span-7, .span-8, .span-12 { grid-column: span 12; }
+}
+
+/* ══════════════════════════════════════
+   ACHIEVEMENTS
+══════════════════════════════════════ */
+#achievements {
+  padding: 6rem 1.5rem; background: var(--navy2); position: relative; overflow: hidden;
+}
+.ach-glow {
+  position: absolute; top: -200px; right: -200px; width: 600px; height: 600px;
+  pointer-events: none;
+  background: radial-gradient(ellipse, rgba(184,150,90,0.04) 0%, transparent 65%);
+}
+.subsection { margin-bottom: 5rem; }
+.comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; max-width: 1200px; margin: 0 auto; background: var(--border); border: 1px solid var(--border); }
+@media (max-width: 768px) { .comp-grid { grid-template-columns: 1fr; } }
+.comp-card {
+  background: var(--navy2); padding: 2.5rem 2rem;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;
+  transition: background 0.3s;
+}
+.comp-card:hover { background: var(--navy3); }
+.comp-rank {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; font-weight: 300; line-height: 1; margin-bottom: 0.5rem;
+}
+.comp-event { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500; color: var(--cream); margin-bottom: 4px; }
+.comp-org { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+.comp-detail { font-size: 12.5px; color: var(--fg-muted); line-height: 1.65; letter-spacing: 0.01em; }
+.comp-prize {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em;
+}
+
+/* Certs */
+.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; max-width: 1200px; margin: 0 auto; background: var(--border); border: 1px solid var(--border); }
+@media (max-width: 768px) { .cert-grid { grid-template-columns: 1fr; } }
+.cert-card {
+  background: var(--navy2); padding: 2rem;
+  transition: background 0.3s;
+}
+.cert-card:hover { background: var(--navy3); }
+.cert-header { display: flex; align-items: center; gap: 14px; margin-bottom: 1rem; }
+.cert-badge-mark {
+  width: 42px; height: 42px; border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 14px; font-weight: 600;
+  flex-shrink: 0;
+}
+.cert-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--cream); }
+.cert-issuer { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-subtle); margin-top: 2px; }
+.cert-grade {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.75rem;
+}
+.cert-desc { font-size: 12.5px; color: var(--fg-muted); line-height: 1.65; }
+
+/* Education */
+.edu-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; max-width: 1200px; margin: 0 auto; background: var(--border); border: 1px solid var(--border); }
+@media (max-width: 768px) { .edu-list { grid-template-columns: 1fr; } }
+.edu-card {
+  background: var(--navy2); padding: 2.25rem 2rem; position: relative;
+  transition: background 0.3s;
+}
+.edu-card:hover { background: var(--navy3); }
+.edu-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: var(--gold); opacity: 0; transition: opacity 0.3s;
+}
+.edu-card:hover::before { opacity: 0.5; }
+.edu-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+.edu-degree { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 500; color: var(--cream); }
+.edu-result { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--gold); }
+.edu-inst { font-size: 12px; color: var(--fg-muted); margin-bottom: 4px; letter-spacing: 0.02em; }
+.edu-year { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--fg-subtle); margin-bottom: 0.75rem; }
+.edu-note {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(184,150,90,0.08); border: 1px solid rgba(184,150,90,0.2);
+  padding: 5px 12px; border-radius: 2px;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+}
+.edu-note-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 5px rgba(184,150,90,0.8); }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  padding: 5rem 1.5rem; background: var(--navy2);
+  border-top: 1px solid var(--border); position: relative; overflow: hidden;
+}
+.footer-glow {
+  position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 250px; pointer-events: none;
+  background: radial-gradient(ellipse, rgba(184,150,90,0.05) 0%, transparent 70%);
+}
+.footer-cta { text-align: center; margin-bottom: 4rem; }
+.footer-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 300; letter-spacing: 0.02em; margin: 0.75rem 0 1rem; color: var(--cream); }
+.footer-cta p { font-size: 13px; color: var(--fg-muted); max-width: 380px; margin: 0 auto 2rem; line-height: 1.8; letter-spacing: 0.03em; }
+.footer-bar {
+  border-top: 1px solid var(--border); padding-top: 2rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  max-width: 1200px; margin: 0 auto;
+}
+.footer-logo { display: flex; align-items: center; gap: 10px; }
+.footer-logo-mark {
+  width: 30px; height: 30px; border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(184,150,90,0.1); border: 1px solid rgba(184,150,90,0.35);
+  font-family: 'Cormorant Garamond', serif; font-size: 12px; font-weight: 600; color: var(--gold);
+}
+.footer-name { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500; letter-spacing: 0.06em; color: var(--cream); }
+.footer-name span { color: var(--gold); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: var(--fg-muted); transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-copy { font-size: 10.5px; letter-spacing: 0.12em; color: var(--fg-subtle); }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .menu-btn { display: flex; align-items: center; justify-content: center; }
+  .hero-content { margin-top: 8rem; }
+  .arch-container { max-width: 100%; }
+  .arch-img { width: 88px; height: 88px; }
+  .footer-bar { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+  .exp-top { flex-direction: column; }
+  .exp-meta { text-align: left; }
+  .hero-line-left, .hero-line-right { display: none; }
+}
+@media (max-width: 480px) {
+  .arch-img { width: 68px; height: 68px; }
+}
+
+/* ══════════════════════════════════════
+   STAGGER ANIMATIONS
+══════════════════════════════════════ */
+.stagger > * { opacity: 0; transform: translateY(20px); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.stagger.visible > *:nth-child(1) { animation: fadeUp 0.8s 0.05s cubic-bezier(0.16,1,0.3,1) forwards; }
+.stagger.visible > *:nth-child(2) { animation: fadeUp 0.8s 0.15s cubic-bezier(0.16,1,0.3,1) forwards; }
+.stagger.visible > *:nth-child(3) { animation: fadeUp 0.8s 0.25s cubic-bezier(0.16,1,0.3,1) forwards; }
+.stagger.visible > *:nth-child(4) { animation: fadeUp 0.8s 0.35s cubic-bezier(0.16,1,0.3,1) forwards; }
+.stagger.visible > *:nth-child(5) { animation: fadeUp 0.8s 0.45s cubic-bezier(0.16,1,0.3,1) forwards; }
+.stagger.visible > *:nth-child(6) { animation: fadeUp 0.8s 0.55s cubic-bezier(0.16,1,0.3,1) forwards; }
+.stagger.visible > *:nth-child(7) { animation: fadeUp 0.8s 0.65s cubic-bezier(0.16,1,0.3,1) forwards; }
+.stagger.visible > *:nth-child(8) { animation: fadeUp 0.8s 0.75s cubic-bezier(0.16,1,0.3,1) forwards; }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <nav id="navbar">
+    <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div class="logo-mark">MT</div>
+      <span class="logo-name">Mehul<span> Thapar</span></span>
+    </div>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+      <a href="mailto:mehulthaparwork@gmail.com" class="hire-btn">Hire Me</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
+        <line x1="3" y1="7" x2="19" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="3" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="3" y1="17" x2="19" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+    <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+    <a href="#achievements" onclick="closeMobileMenu()">Achievements</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="mailto:mehulthaparwork@gmail.com" class="hire-btn" style="text-align:center;justify-content:center;">Hire Me</a>
+  </div>
+</header>
+
+<!-- ══ OPENING QUOTE ══ -->
+<section id="opening-quote" style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1.5rem;overflow:hidden;background:var(--navy);">
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,150,90,0.06) 0%, transparent 70%);"></div>
+  <div style="position:absolute;left:3rem;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(184,150,90,0.12),transparent);pointer-events:none;"></div>
+  <div style="position:absolute;right:3rem;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,rgba(184,150,90,0.12),transparent);pointer-events:none;"></div>
+  <div style="max-width:820px;text-align:center;position:relative;z-index:1;" class="reveal">
+    <div style="display:inline-flex;align-items:center;gap:14px;margin-bottom:3rem;">
+      <div style="width:40px;height:1px;background:var(--gold);opacity:0.45;"></div>
+      <span style="font-family:'Jost',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.5em;text-transform:uppercase;color:var(--gold);opacity:0.65;">A Creed</span>
+      <div style="width:40px;height:1px;background:var(--gold);opacity:0.45;"></div>
+    </div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.4vw,1.85rem);font-weight:300;font-style:italic;color:var(--cream);line-height:1.8;letter-spacing:0.02em;margin-bottom:2.5rem;">
+      <span style="font-size:3.5rem;line-height:0;vertical-align:-0.65rem;color:var(--gold);opacity:0.4;font-style:normal;margin-right:4px;">"</span>Loyalty is a two-way street. If I'm asking for it from you,<br>then you're getting it from me.<span style="font-size:3.5rem;line-height:0;vertical-align:-0.65rem;color:var(--gold);opacity:0.4;font-style:normal;margin-left:2px;">"</span>
+    </div>
+    <div style="font-family:'Jost',sans-serif;font-size:9.5px;font-weight:500;letter-spacing:0.35em;text-transform:uppercase;color:var(--fg-subtle);">— Harvey Specter</div>
+    <div style="margin-top:4.5rem;">
+      <a href="#hero" style="display:inline-flex;flex-direction:column;align-items:center;gap:10px;color:var(--fg-subtle);font-size:9px;letter-spacing:0.35em;text-transform:uppercase;transition:color 0.3s;text-decoration:none;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--fg-subtle)'">
+        Enter
+        <div style="width:1px;height:40px;background:linear-gradient(to bottom,rgba(184,150,90,0.5),transparent);"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-line-left" aria-hidden="true"></div>
+  <div class="hero-line-right" aria-hidden="true"></div>
+
+  <!-- Arch images -->
+  <div class="arch-container" id="archContainer" aria-hidden="true">
+    <div class="arch-img" style="left:3%;top:68%;transform:rotate(-36deg)" data-rotate="-36deg">
+      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1956b1030-1766565908424.png" alt="Office" loading="lazy"/>
+    </div>
+    <div class="arch-img" style="left:13%;top:38%;transform:rotate(-24deg)" data-rotate="-24deg">
+      <img src="https://images.unsplash.com/photo-1726440464439-81579d883f5e?w=300&q=80" alt="Professional" loading="lazy"/>
+    </div>
+    <div class="arch-img" style="left:24%;top:12%;transform:rotate(-14deg)" data-rotate="-14deg">
+      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19b9c9099-1772060871962.png" alt="Campus" loading="lazy"/>
+    </div>
+    <div class="arch-img" style="left:37%;top:2%;transform:rotate(-5deg)" data-rotate="-5deg">
+      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_173ec79fb-1768476581828.png" alt="Meeting" loading="lazy"/>
+    </div>
+    <div class="arch-img" style="left:50%;top:2%;transform:rotate(5deg)" data-rotate="5deg">
+      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_179ce309c-1772616747444.png" alt="Students" loading="lazy"/>
+    </div>
+    <div class="arch-img" style="left:63%;top:12%;transform:rotate(14deg)" data-rotate="14deg">
+      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19804fb11-1772686883718.png" alt="Conference" loading="lazy"/>
+    </div>
+    <div class="arch-img" style="left:75%;top:38%;transform:rotate(24deg)" data-rotate="24deg">
+      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10e0a594f-1766732712586.png" alt="Trophy" loading="lazy"/>
+    </div>
+    <div class="arch-img" style="left:85%;top:68%;transform:rotate(36deg)" data-rotate="36deg">
+      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d1342fbb-1766936728417.png" alt="Office" loading="lazy"/>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      <span>B.Com · Shivaji College, University of Delhi</span>
+    </div>
+
+    <h1 class="hero-title">
+      Building Businesses,<br>
+      <span class="shimmer-text">One Decision</span> at a Time.
+    </h1>
+
+    <p class="hero-desc">
+      Marketing strategist, published editor, and national competition winner.
+      Top 10% at Delhi University — with real-world impact at DLF Limited, Josh Talks &amp; AIESEC.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#experience" class="btn-primary">
+        View My Work
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#achievements" class="btn-secondary">Achievements</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item"><div class="stat-value">8.00</div><div class="stat-label">CGPA</div></div>
+      <div class="stat-item"><div class="stat-value">₹3Cr+</div><div class="stat-label">Campaign Managed</div></div>
+      <div class="stat-item"><div class="stat-value">3</div><div class="stat-label">Podium Finishes</div></div>
+      <div class="stat-item"><div class="stat-value">5+</div><div class="stat-label">Internships</div></div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══ METRICS ══ -->
+<section id="metrics">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1">
+    <div class="section-header reveal">
+      <p class="section-label">By The Numbers</p>
+      <div class="rule"></div>
+      <h2>Impact that <span class="gradient-text">speaks for itself.</span></h2>
+    </div>
+    <div class="metrics-grid stagger">
+      <div class="metric-card"><div class="metric-icon">◈</div><div class="metric-value" data-target="3" data-prefix="₹" data-suffix="Cr+">₹3Cr+</div><div class="metric-label">Campaign Budget</div><div class="metric-sub">Managed at DLF Limited</div></div>
+      <div class="metric-card"><div class="metric-icon">◉</div><div class="metric-value" data-target="500" data-suffix="+">500+</div><div class="metric-label">Transactions</div><div class="metric-sub">Zero errors in Tally</div></div>
+      <div class="metric-card"><div class="metric-icon">◎</div><div class="metric-value" data-target="400" data-suffix="+">400+</div><div class="metric-label">Event Participants</div><div class="metric-sub">National case competition</div></div>
+      <div class="metric-card"><div class="metric-icon">◈</div><div class="metric-value" data-target="70" data-suffix="+">70+</div><div class="metric-label">MoUs Secured</div><div class="metric-sub">With sponsors &amp; partners</div></div>
+      <div class="metric-card"><div class="metric-icon">◉</div><div class="metric-value" data-target="1000" data-suffix="+">1,000+</div><div class="metric-label">Magazine Readers</div><div class="metric-sub">Tatva editorial reach</div></div>
+      <div class="metric-card"><div class="metric-icon">◎</div><div class="metric-value" data-target="7">7</div><div class="metric-label">Scholar Awards</div><div class="metric-sub">Consecutive years, 2015–22</div></div>
+      <div class="metric-card"><div class="metric-icon">◈</div><div class="metric-value" data-target="99" data-suffix="%">99%</div><div class="metric-label">Accuracy Rate</div><div class="metric-sub">100+ hrs transcription at Josh Talks</div></div>
+      <div class="metric-card"><div class="metric-icon">◉</div><div class="metric-value" data-target="30" data-suffix="%+">30%+</div><div class="metric-label">Engagement Boost</div><div class="metric-sub">Digital campaigns, Sheikh Chang Singh</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="experience">
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1">
+    <div class="section-header reveal">
+      <p class="section-label">Professional Experience</p>
+      <div class="rule"></div>
+      <h2>Where I've <span class="gradient-text">made an impact.</span></h2>
+    </div>
+    <div class="exp-list stagger">
+
+      <div class="exp-card">
+        <div class="exp-inner">
+          <div class="exp-badge" style="background:rgba(184,150,90,0.12);color:var(--gold);border-color:rgba(184,150,90,0.35)">D</div>
+          <div class="exp-body">
+            <div class="exp-top">
+              <div>
+                <div class="exp-role">Marketing Intern</div>
+                <div class="exp-company" style="color:var(--gold)">DLF Limited · Gurgaon</div>
+              </div>
+              <div class="exp-meta">
+                <div class="exp-period">Jul – Aug 2025</div>
+                <div class="exp-location">New Delhi</div>
+              </div>
+            </div>
+            <ul class="exp-bullets">
+              <li><div class="bullet-dot"></div>Conducted comprehensive NRI market study identifying USA (4.9M diaspora) and GCC (9M diaspora) as high-potential regions with ₹1.5L+ Crore combined investment capacity; compiled findings in stakeholder presentation decks</li>
+              <li><div class="bullet-dot"></div>Evaluated 15+ marketing channels and recommended 5 priority mediums projected to deliver 30% higher leads and 20% lower customer acquisition cost</li>
+              <li><div class="bullet-dot"></div>Contributed to a ₹3 Cr+ integrated marketing campaign, building Gantt-based execution roadmap that improved operational efficiency by 25–30%</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Real Estate</span>
+              <span class="tag">Market Research</span>
+              <span class="tag">Campaign Strategy</span>
+              <span class="tag">NRI Markets</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-inner">
+          <div class="exp-badge" style="background:rgba(45,74,62,0.4);color:#7aad97;border-color:rgba(45,74,62,0.7)">S</div>
+          <div class="exp-body">
+            <div class="exp-top">
+              <div>
+                <div class="exp-role">Marketing Intern</div>
+                <div class="exp-company" style="color:#7aad97">Sheikh Chang Singh · New Delhi</div>
+              </div>
+              <div class="exp-meta">
+                <div class="exp-period">Apr – Jun 2025</div>
+                <div class="exp-location">New Delhi</div>
+              </div>
+            </div>
+            <ul class="exp-bullets">
+              <li><div class="bullet-dot" style="background:#7aad97"></div>Spearheaded digital marketing campaigns across Instagram and social platforms, boosting engagement by 30%+ and reaching 10,000+ potential customers</li>
+              <li><div class="bullet-dot" style="background:#7aad97"></div>Executed brand activation strategies across 8+ high-footfall catering events, strengthening on-ground presence and brand recall across Delhi</li>
+              <li><div class="bullet-dot" style="background:#7aad97"></div>Developed content calendars and tracked campaign performance metrics to continuously optimize reach and engagement</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Social Media</span>
+              <span class="tag">Brand Activation</span>
+              <span class="tag">Digital Marketing</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-inner">
+          <div class="exp-badge" style="background:rgba(184,150,90,0.08);color:var(--gold);border-color:rgba(184,150,90,0.3);font-size:12px">SC</div>
+          <div class="exp-body">
+            <div class="exp-top">
+              <div>
+                <div class="exp-role">Accounts Department Intern</div>
+                <div class="exp-company" style="color:var(--gold)">Shivaji College · Principal Internship Scheme</div>
+              </div>
+              <div class="exp-meta">
+                <div class="exp-period">Sep 2024 – Apr 2025</div>
+                <div class="exp-location">Delhi University</div>
+              </div>
+            </div>
+            <ul class="exp-bullets">
+              <li><div class="bullet-dot"></div>Worked 200+ hours managing financial records for a student body of 5,000+, maintaining 100% compliance with institutional standards</li>
+              <li><div class="bullet-dot"></div>Prepared and verified salary slips and pension records in Excel, improving documentation accuracy by 15%</li>
+              <li><div class="bullet-dot"></div>Processed 500+ transactions in Tally with zero errors, reducing monthly reconciliation time by 20%</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Tally</span>
+              <span class="tag">Excel</span>
+              <span class="tag">Financial Records</span>
+              <span class="tag">Compliance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-inner">
+          <div class="exp-badge" style="background:rgba(45,74,62,0.3);color:#7aad97;border-color:rgba(45,74,62,0.6);font-size:11px">AI</div>
+          <div class="exp-body">
+            <div class="exp-top">
+              <div>
+                <div class="exp-role">Junior Manager Outgoing – Social Sector</div>
+                <div class="exp-company" style="color:#7aad97">AIESEC in Delhi University</div>
+              </div>
+              <div class="exp-meta">
+                <div class="exp-period">Feb – Jul 2025</div>
+                <div class="exp-location">Delhi University</div>
+              </div>
+            </div>
+            <ul class="exp-bullets">
+              <li><div class="bullet-dot" style="background:#7aad97"></div>Maintained active international relations with partner teams in Egypt, Turkey, and Sri Lanka to facilitate cross-border volunteering exchanges</li>
+              <li><div class="bullet-dot" style="background:#7aad97"></div>Hosted a skill-building digital marketing workshop attended by 300+ participants, covering content strategy and platform growth</li>
+              <li><div class="bullet-dot" style="background:#7aad97"></div>Represented the chapter at the February Local Conference alongside 50+ delegates, completing leadership and strategy training modules</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">International Relations</span>
+              <span class="tag">Volunteering</span>
+              <span class="tag">Leadership</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-inner">
+          <div class="exp-badge" style="background:rgba(184,150,90,0.08);color:var(--gold);border-color:rgba(184,150,90,0.3);font-size:11px">JT</div>
+          <div class="exp-body">
+            <div class="exp-top">
+              <div>
+                <div class="exp-role">Operations Intern</div>
+                <div class="exp-company" style="color:var(--gold)">Josh Talks</div>
+              </div>
+              <div class="exp-meta">
+                <div class="exp-period">Aug – Oct 2024</div>
+                <div class="exp-location">Gurugram, Haryana</div>
+              </div>
+            </div>
+            <ul class="exp-bullets">
+              <li><div class="bullet-dot"></div>Transcribed and proofread 100+ hours of audio/video content with 99% accuracy, ensuring consistent on-time delivery across projects</li>
+              <li><div class="bullet-dot"></div>Streamlined the transcription workflow end-to-end, cutting average turnaround time by 20%</li>
+              <li><div class="bullet-dot"></div>Maintained quality control standards across a high-volume content pipeline, supporting editorial and production teams directly</li>
+            </ul>
+            <div class="exp-tags">
+              <span class="tag">Content Operations</span>
+              <span class="tag">Transcription</span>
+              <span class="tag">Workflow Optimization</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJECTS ══ -->
+<section id="projects">
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1">
+    <div class="section-header reveal">
+      <p class="section-label">Projects &amp; Leadership</p>
+      <div class="rule"></div>
+      <h2>What I <span class="gradient-text">build and lead.</span></h2>
+    </div>
+    <div class="bento reveal">
+
+      <div class="project-card span-7" style="background:var(--navy2)">
+        <div class="hover-glow" style="background:radial-gradient(ellipse at top left,rgba(184,150,90,0.07),transparent 60%)"></div>
+        <div class="top-line" style="background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+        <div class="accent-dot" style="background:var(--gold);opacity:0.7"></div>
+        <div>
+          <div class="project-title">SPADE – The Ed-Research Society</div>
+          <div class="project-subtitle" style="color:var(--gold)">President (Former VP) · Jul 2024–Present</div>
+          <div class="project-desc">Led two national case competitions with 400+ participants each, judged by Samsung HME, Hive School &amp; Crowwd. Produced documentaries on Gig Economy &amp; Consumer Psychology. Secured 70+ MoUs with Ditto Insurance, Red Bull, Pizza Galleria &amp; more. Published ISBN-approved book <em>Arthamanthan</em>.</div>
+        </div>
+        <div>
+          <div class="project-stats">
+            <div class="stat-block"><div class="s-val" style="color:var(--gold)">400+</div><div class="s-lbl">Competition Participants</div></div>
+            <div class="stat-block"><div class="s-val" style="color:var(--gold)">70+</div><div class="s-lbl">MoUs Secured</div></div>
+            <div class="stat-block"><div class="s-val" style="color:var(--gold)">20+</div><div class="s-lbl">Research Articles</div></div>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag" style="background:rgba(184,150,90,0.08);color:var(--gold);border:1px solid rgba(184,150,90,0.25)">Leadership</span>
+            <span class="proj-tag" style="background:rgba(184,150,90,0.08);color:var(--gold);border:1px solid rgba(184,150,90,0.25)">Research</span>
+            <span class="proj-tag" style="background:rgba(184,150,90,0.08);color:var(--gold);border:1px solid rgba(184,150,90,0.25)">Events</span>
+            <span class="proj-tag" style="background:rgba(184,150,90,0.08);color:var(--gold);border:1px solid rgba(184,150,90,0.25)">Sponsorships</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card span-5" style="background:var(--navy3)">
+        <div class="hover-glow" style="background:radial-gradient(ellipse at top left,rgba(122,173,151,0.07),transparent 60%)"></div>
+        <div class="top-line" style="background:linear-gradient(90deg,transparent,#7aad97,transparent)"></div>
+        <div class="accent-dot" style="background:#7aad97;opacity:0.7"></div>
+        <div>
+          <div class="project-title">Tatva – Annual Magazine</div>
+          <div class="project-subtitle" style="color:#7aad97">Editor-in-Chief · Neuroeconomics Edition</div>
+          <div class="project-desc">Curated 20 research articles with a 15-member editorial team. Produced weekly newsletters circulated to 1,000+ readers across Delhi University. Coordinated all editorial, design, and printing logistics.</div>
+        </div>
+        <div>
+          <div class="project-stats">
+            <div class="stat-block"><div class="s-val" style="color:#7aad97">20</div><div class="s-lbl">Research Articles</div></div>
+            <div class="stat-block"><div class="s-val" style="color:#7aad97">1,000+</div><div class="s-lbl">Readers</div></div>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag" style="background:rgba(122,173,151,0.1);color:#7aad97;border:1px solid rgba(122,173,151,0.25)">Editorial</span>
+            <span class="proj-tag" style="background:rgba(122,173,151,0.1);color:#7aad97;border:1px solid rgba(122,173,151,0.25)">Publishing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card span-4" style="background:var(--navy2)">
+        <div class="hover-glow" style="background:radial-gradient(ellipse at top left,rgba(184,150,90,0.07),transparent 60%)"></div>
+        <div class="top-line" style="background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+        <div class="accent-dot" style="background:var(--gold);opacity:0.5"></div>
+        <div>
+          <div class="project-title">Arthamanthan – Research Book</div>
+          <div class="project-subtitle" style="color:var(--gold)">Contributing Author · ISBN Approved</div>
+          <div class="project-desc">Contributed to an ISBN-approved research book featuring 20+ published academic papers, distributed across the University of Delhi network.</div>
+        </div>
+        <div>
+          <div class="project-stats">
+            <div class="stat-block"><div class="s-val" style="color:var(--gold)">20+</div><div class="s-lbl">Published Papers</div></div>
+            <div class="stat-block"><div class="s-val" style="color:var(--gold)">ISBN</div><div class="s-lbl">Approved</div></div>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag" style="background:rgba(184,150,90,0.08);color:var(--gold);border:1px solid rgba(184,150,90,0.25)">Academic Publishing</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card span-8" style="background:var(--navy3)">
+        <div class="hover-glow" style="background:radial-gradient(ellipse at top left,rgba(122,173,151,0.07),transparent 60%)"></div>
+        <div class="top-line" style="background:linear-gradient(90deg,transparent,#7aad97,transparent)"></div>
+        <div class="accent-dot" style="background:#7aad97;opacity:0.6"></div>
+        <div>
+          <div class="project-title">Kaizen – The Commerce Society</div>
+          <div class="project-subtitle" style="color:#7aad97">Vice President (Former Secretary) · Jul 2024–Present</div>
+          <div class="project-desc">Directed society operations and coordinated sponsorships for Vyapaar Mock Stock Competition for 3 consecutive years. Organised two International Conferences on Viksit Bharat@2047 with 400+ delegates across 11+ simultaneous track sessions. Designed Google Workspace Basics course for 200+ Delhi University students.</div>
+        </div>
+        <div>
+          <div class="project-stats">
+            <div class="stat-block"><div class="s-val" style="color:#7aad97">400+</div><div class="s-lbl">Conference Delegates</div></div>
+            <div class="stat-block"><div class="s-val" style="color:#7aad97">200+</div><div class="s-lbl">Course Students</div></div>
+            <div class="stat-block"><div class="s-val" style="color:#7aad97">11+</div><div class="s-lbl">Track Sessions</div></div>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag" style="background:rgba(122,173,151,0.1);color:#7aad97;border:1px solid rgba(122,173,151,0.25)">Commerce</span>
+            <span class="proj-tag" style="background:rgba(122,173,151,0.1);color:#7aad97;border:1px solid rgba(122,173,151,0.25)">Events</span>
+            <span class="proj-tag" style="background:rgba(122,173,151,0.1);color:#7aad97;border:1px solid rgba(122,173,151,0.25)">Strategy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card span-4" style="background:var(--navy2)">
+        <div class="hover-glow" style="background:radial-gradient(ellipse at top left,rgba(184,150,90,0.07),transparent 60%)"></div>
+        <div class="top-line" style="background:linear-gradient(90deg,transparent,var(--gold),transparent)"></div>
+        <div class="accent-dot" style="background:var(--gold);opacity:0.5"></div>
+        <div>
+          <div class="project-title">TEDx Shivaji</div>
+          <div class="project-subtitle" style="color:var(--gold)">Event Manager &amp; Video Production Executive</div>
+          <div class="project-desc">Managed recording and post-production for 10+ speaker sessions, generating 5K+ cumulative online views. Coordinated end-to-end logistics for 200+ attendees across cross-functional teams.</div>
+        </div>
+        <div>
+          <div class="project-stats">
+            <div class="stat-block"><div class="s-val" style="color:var(--gold)">5K+</div><div class="s-lbl">Online Views</div></div>
+            <div class="stat-block"><div class="s-val" style="color:var(--gold)">200+</div><div class="s-lbl">Attendees</div></div>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag" style="background:rgba(184,150,90,0.08);color:var(--gold);border:1px solid rgba(184,150,90,0.25)">TEDx</span>
+            <span class="proj-tag" style="background:rgba(184,150,90,0.08);color:var(--gold);border:1px solid rgba(184,150,90,0.25)">Video Production</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card span-8" style="background:var(--navy3)">
+        <div class="hover-glow" style="background:radial-gradient(ellipse at top left,rgba(122,173,151,0.07),transparent 60%)"></div>
+        <div class="top-line" style="background:linear-gradient(90deg,transparent,#7aad97,transparent)"></div>
+        <div class="accent-dot" style="background:#7aad97;opacity:0.55"></div>
+        <div>
+          <div class="project-title">Documentary: Rise of the Gig Economy &amp; Consumer Psychology</div>
+          <div class="project-subtitle" style="color:#7aad97">Researcher, Scriptwriter &amp; Producer</div>
+          <div class="project-desc">Researched, scripted, and produced two full documentaries exploring India's gig economy and consumer behaviour patterns — featuring speakers from BlaBliBlu, Samsung, Nestle, and more. Engaged 500+ students and faculty.</div>
+        </div>
+        <div>
+          <div class="project-stats">
+            <div class="stat-block"><div class="s-val" style="color:#7aad97">2</div><div class="s-lbl">Documentaries</div></div>
+            <div class="stat-block"><div class="s-val" style="color:#7aad97">500+</div><div class="s-lbl">Engaged</div></div>
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag" style="background:rgba(122,173,151,0.1);color:#7aad97;border:1px solid rgba(122,173,151,0.25)">Documentary</span>
+            <span class="proj-tag" style="background:rgba(122,173,151,0.1);color:#7aad97;border:1px solid rgba(122,173,151,0.25)">Scriptwriting</span>
+            <span class="proj-tag" style="background:rgba(122,173,151,0.1);color:#7aad97;border:1px solid rgba(122,173,151,0.25)">Research</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ ACHIEVEMENTS ══ -->
+<section id="achievements">
+  <div class="ach-glow" aria-hidden="true"></div>
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1">
+
+    <!-- Competitions -->
+    <div class="subsection">
+      <div class="section-header reveal">
+        <p class="section-label">Competition Record</p>
+        <div class="rule"></div>
+        <h2>3 podiums. <span class="gradient-text">250+ teams beaten.</span></h2>
+      </div>
+      <div class="comp-grid stagger">
+        <div class="comp-card">
+          <div>
+            <div class="comp-rank" style="color:var(--gold)">1st</div>
+            <div class="comp-event">Pitch Perfect – B-Plan Competition</div>
+            <div class="comp-org" style="color:var(--gold)">Udhmodhya Committee</div>
+            <div class="comp-detail">Outperformed 30 competing teams with a winning business plan presentation</div>
+          </div>
+          <div class="comp-prize" style="color:var(--gold)">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5l-3.1 1.5.6-3.5L2 5l3.5-.5L7 1z" fill="currentColor"/></svg>
+            Prize: ₹6,000
+          </div>
+        </div>
+        <div class="comp-card">
+          <div>
+            <div class="comp-rank" style="color:#7aad97">2nd</div>
+            <div class="comp-event">DTU National Case Competition</div>
+            <div class="comp-org" style="color:#7aad97">Delhi Technological University</div>
+            <div class="comp-detail">National Runner-Up · Jan 2025 · Outperformed 120+ teams, 13 finalists</div>
+          </div>
+          <div class="comp-prize" style="color:#7aad97">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5l-3.1 1.5.6-3.5L2 5l3.5-.5L7 1z" fill="currentColor"/></svg>
+            Prize: ₹3,000
+          </div>
+        </div>
+        <div class="comp-card">
+          <div>
+            <div class="comp-rank" style="color:var(--fg-muted)">3rd</div>
+            <div class="comp-event">Shivaji College Case Competition</div>
+            <div class="comp-org" style="color:var(--fg-muted)">Shivaji College, University of Delhi</div>
+            <div class="comp-detail">National 2nd Runner-Up · Feb 2025 · 3rd among 15 finalists from 100+ teams</div>
+          </div>
+          <div class="comp-prize" style="color:var(--fg-muted)">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5l-3.1 1.5.6-3.5L2 5l3.5-.5L7 1z" fill="currentColor"/></svg>
+            National Recognition
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="subsection">
+      <div class="section-header reveal">
+        <p class="section-label">Certifications</p>
+        <div class="rule"></div>
+        <h2>Credentials that <span class="gradient-text">verify the work.</span></h2>
+      </div>
+      <div class="cert-grid stagger">
+        <div class="cert-card">
+          <div class="cert-header">
+            <div class="cert-badge-mark" style="background:rgba(184,150,90,0.15);color:var(--gold);border:1px solid rgba(184,150,90,0.35)">MF</div>
+            <div>
+              <div class="cert-title">McKinsey Forward Program</div>
+              <div class="cert-issuer">McKinsey &amp; Company · 2025</div>
+            </div>
+          </div>
+          <div class="cert-grade">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Completed
+          </div>
+          <div class="cert-desc">Problem-solving, digital collaboration &amp; business fundamentals. 94% of alumni report increased confidence; 75% achieve career growth within 2 months.</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-header">
+            <div class="cert-badge-mark" style="background:rgba(122,173,151,0.12);color:#7aad97;border:1px solid rgba(122,173,151,0.3)">GW</div>
+            <div>
+              <div class="cert-title">Google Workspace Basics</div>
+              <div class="cert-issuer">Shivaji College · 2025</div>
+            </div>
+          </div>
+          <div class="cert-grade">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            A+ · Verified
+          </div>
+          <div class="cert-desc">Proficient in Docs, Sheets, Slides &amp; Drive with 10+ practical assessments. Also organised this course for 200+ students across Delhi University.</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-header">
+            <div class="cert-badge-mark" style="background:rgba(184,150,90,0.1);color:var(--gold-light);border:1px solid rgba(184,150,90,0.3)">DF</div>
+            <div>
+              <div class="cert-title">Digital Forensics &amp; Cyber Intelligence</div>
+              <div class="cert-issuer">Shivaji College · 2024</div>
+            </div>
+          </div>
+          <div class="cert-grade">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            A+ · 30 Hours
+          </div>
+          <div class="cert-desc">Hands-on exposure to cybercrime investigation and digital evidence handling techniques.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Academic Awards -->
+    <div class="subsection">
+      <div class="section-header reveal">
+        <p class="section-label">Academic Honours</p>
+        <div class="rule"></div>
+        <h2>A record of <span class="gradient-text">consistent excellence.</span></h2>
+      </div>
+      <div class="cert-grid stagger">
+        <div class="cert-card">
+          <div class="cert-header">
+            <div class="cert-badge-mark" style="background:rgba(184,150,90,0.15);color:var(--gold);border:1px solid rgba(184,150,90,0.4)">★</div>
+            <div>
+              <div class="cert-title">Student of the Year</div>
+              <div class="cert-issuer">Shivaji College · 2024–25</div>
+            </div>
+          </div>
+          <div class="cert-grade">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Top Award
+          </div>
+          <div class="cert-desc">Awarded among 1,000+ students for academic excellence and leadership through roles and initiatives across the college.</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-header">
+            <div class="cert-badge-mark" style="background:rgba(122,173,151,0.12);color:#7aad97;border:1px solid rgba(122,173,151,0.3)">1</div>
+            <div>
+              <div class="cert-title">International Commerce Olympiad</div>
+              <div class="cert-issuer">Commerce Teachers Foundation · 2022–23</div>
+            </div>
+          </div>
+          <div class="cert-grade">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Rank 1 — School Topper
+          </div>
+          <div class="cert-desc">Secured 1st Rank as School Topper in the International Commerce Olympiad organised by the Commerce Teachers Foundation.</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-header">
+            <div class="cert-badge-mark" style="background:rgba(184,150,90,0.1);color:var(--gold);border:1px solid rgba(184,150,90,0.3)">S</div>
+            <div>
+              <div class="cert-title">Scholar Award</div>
+              <div class="cert-issuer">Summer Fields School · 2015–2022</div>
+            </div>
+          </div>
+          <div class="cert-grade">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            7 Consecutive Years
+          </div>
+          <div class="cert-desc">Awarded as Scholar for highest academic performance for 7 consecutive years, recognising sustained excellence across all subjects.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div>
+      <div class="section-header reveal">
+        <p class="section-label">Education</p>
+        <div class="rule"></div>
+        <h2>Academic <span class="gradient-text">foundation.</span></h2>
+      </div>
+      <div class="edu-list stagger">
+        <div class="edu-card">
+          <div class="edu-top">
+            <div class="edu-degree">B.Com (Hons)</div>
+            <div class="edu-result">8.00 CGPA</div>
+          </div>
+          <div class="edu-inst">Shivaji College, University of Delhi</div>
+          <div class="edu-year">2023–2026 · #49 NIRF · #23 India Today Commerce</div>
+          <div><span class="edu-note"><span class="edu-note-dot"></span>Top 10% of Department</span></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-top">
+            <div class="edu-degree">Class XII</div>
+            <div class="edu-result">94.2%</div>
+          </div>
+          <div class="edu-inst">Summer Fields School, New Delhi</div>
+          <div class="edu-year">2023 · CBSE Board</div>
+          <div><span class="edu-note"><span class="edu-note-dot"></span>School Topper · Olympiad Rank 1</span></div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-top">
+            <div class="edu-degree">Class X</div>
+            <div class="edu-result">94.2%</div>
+          </div>
+          <div class="edu-inst">Summer Fields School, New Delhi</div>
+          <div class="edu-year">2021 · CBSE Board</div>
+          <div><span class="edu-note"><span class="edu-note-dot"></span>7 Consecutive Scholar Awards</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer id="contact">
+  <div class="footer-glow" aria-hidden="true"></div>
+  <div style="max-width:1200px;margin:0 auto;position:relative;z-index:1">
+    <div class="footer-cta">
+      <p class="section-label">Get In Touch</p>
+      <div class="rule" style="margin:1rem auto"></div>
+      <h2>Open to <span class="gradient-text">Opportunities.</span></h2>
+      <p>Internships, collaborations, or just a conversation — I'd love to connect.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="mailto:mehulthaparwork@gmail.com" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><path d="M2 4h14a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V5a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 4.5l7.5 6 7.5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          mehulthaparwork@gmail.com
+        </a>
+        <a href="tel:9818109472" class="btn-secondary">
+          <svg width="15" height="15" viewBox="0 0 18 18" fill="none"><path d="M15 12.5c0 .4-.1.8-.3 1.2-.2.4-.5.7-.8 1-.5.5-1 .7-1.7.7-1 0-3.1-.9-5.6-3.3-2.5-2.5-3.3-4.6-3.3-5.6 0-.6.2-1.2.7-1.7.3-.3.6-.6 1-.8.4-.2.8-.3 1.2-.3.5 0 .7.1.9.4l2 2.9c.2.3.3.6.3.8 0 .3-.1.6-.3.8l-.6.6c0 .1-.1.1-.1.2.3.5.7 1 1.2 1.5s1 .9 1.5 1.2c.1 0 .1-.1.2-.1l.6-.6c.2-.2.5-.3.8-.3.2 0 .5.1.8.3l2.9 2c.3.2.4.4.4.9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          +91 98181 09472
+        </a>
+        <a href="https://www.linkedin.com/in/mehul-thapar" target="_blank" rel="noopener" class="btn-secondary">
+          <svg width="15" height="15" viewBox="0 0 18 18" fill="none"><path d="M3 6h2v9H3zm1-1.5a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zM7 6h2v1.2C9.4 6.5 10.2 6 11.5 6 14 6 15 7.5 15 10v5h-2v-4.5c0-1.5-.5-2-1.5-2s-2 .8-2 2.5V15H7V6z" fill="currentColor"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <div class="footer-logo">
+        <div class="footer-logo-mark">MT</div>
+        <span class="footer-name">Mehul<span> Thapar</span></span>
+      </div>
+      <div class="footer-links">
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+      </div>
+      <div class="footer-copy">© 2026 Mehul Thapar</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Nav scroll ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+// ── Mobile menu ──
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+
+// ── Arch animation ──
+window.addEventListener('DOMContentLoaded', () => {
+  const imgs = document.querySelectorAll('.arch-img');
+  const total = imgs.length;
+  const mid = (total - 1) / 2;
+
+  imgs.forEach((el, i) => {
+    const baseRotate = el.getAttribute('data-rotate') || '0deg';
+    const fromLeft = i <= mid;
+    const startX = fromLeft ? -120 : 120;
+    el.style.opacity = '0';
+    el.style.transform = `rotate(${baseRotate}) translate(${startX}px, 180px)`;
+    setTimeout(() => {
+      el.style.transition = 'opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1.2s cubic-bezier(0.34,1.2,0.64,1)';
+      el.style.opacity = '1';
+      el.style.transform = `rotate(${baseRotate})`;
+    }, 200 + i * 90);
+  });
+
+  // Hero text stagger
+  const heroTitle = document.querySelector('.hero-title');
+  const heroDesc = document.querySelector('.hero-desc');
+  const heroBtns = document.querySelector('.hero-btns');
+  [heroTitle, heroDesc, heroBtns].forEach((el, i) => {
+    if (!el) return;
+    setTimeout(() => {
+      el.style.transition = 'opacity 1.1s cubic-bezier(0.16,1,0.3,1), transform 1.1s cubic-bezier(0.16,1,0.3,1)';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 1000 + i * 200);
+  });
+});
+
+// ── Parallax ──
+const archContainer = document.getElementById('archContainer');
+window.addEventListener('scroll', () => {
+  archContainer.style.transform = `translateY(${window.scrollY * 0.16}px)`;
+}, { passive: true });
+
+// ── Intersection observer ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.07 });
+
+document.querySelectorAll('.reveal, .stagger').forEach(el => observer.observe(el));
+
+// ── Count-up ──
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const target = parseInt(el.getAttribute('data-target'));
+    const prefix = el.getAttribute('data-prefix') || '';
+    const suffix = el.getAttribute('data-suffix') || '';
+    if (!target) return;
+    let start = 0;
+    const duration = 1400;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) { start = target; clearInterval(timer); }
+      el.textContent = prefix + Math.floor(start).toLocaleString('en-IN') + suffix;
+    }, 16);
+    countObserver.unobserve(el);
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.metric-value[data-target]').forEach(el => countObserver.observe(el));
+</script>
+</body>
+</html>
