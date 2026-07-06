@@ -144,6 +144,14 @@ nav.scrolled{
   transition:all .3s;cursor:pointer;
 }
 .nav-cta:hover{background:var(--navy-lt);border-color:var(--navy-lt);color:var(--gold-lt)}
+.nav-topmate{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--gold-dk);
+  padding:.55rem 1.4rem;border-radius:2px;border:1px solid var(--border-dk);
+  font-family:'Raleway',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  transition:all .3s;cursor:pointer;
+}
+.nav-topmate:hover{background:var(--gold-pale);border-color:var(--gold);color:var(--gold-dk)}
 /* hamburger */
 .ham{display:none;background:none;border:1px solid var(--border-md);border-radius:3px;padding:8px;color:var(--navy);cursor:pointer}
 .mob-menu{
@@ -546,6 +554,108 @@ footer::before{
 .foot-copy{font-family:'EB Garamond',serif;font-size:12px;color:rgba(238,233,220,.28);font-style:italic}
 
 /* ════════════════════════════════════
+   TOPMATE SECTION
+════════════════════════════════════ */
+#topmate{padding:6rem 1.5rem;background:var(--navy);position:relative;overflow:hidden}
+#topmate .grid-bg{
+  position:absolute;inset:0;pointer-events:none;opacity:.025;
+  background-image:linear-gradient(rgba(184,150,78,1) 1px,transparent 1px),linear-gradient(90deg,rgba(184,150,78,1) 1px,transparent 1px);
+  background-size:55px 55px;
+}
+.topmate-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.topmate-hero{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+  margin-bottom:4.5rem;
+}
+@media(max-width:768px){.topmate-hero{grid-template-columns:1fr;gap:2.5rem}}
+.topmate-copy .cap{color:var(--gold)}
+.topmate-copy h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4.5vw,3.2rem);font-weight:300;letter-spacing:-.015em;line-height:1.2;
+  color:var(--cream);margin:.7rem 0 1.25rem;
+}
+.topmate-copy h2 em{font-style:italic;color:var(--gold-lt);font-weight:400}
+.topmate-copy p{
+  font-family:'EB Garamond',serif;font-size:15.5px;color:rgba(238,233,220,.62);
+  line-height:1.85;font-style:italic;margin-bottom:2rem;
+}
+.topmate-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--gold);color:var(--navy);
+  padding:1.05rem 2.25rem;border-radius:2px;
+  font-family:'Raleway',sans-serif;font-weight:700;font-size:11.5px;
+  letter-spacing:.16em;text-transform:uppercase;transition:all .35s;
+  border:1px solid var(--gold);
+}
+.topmate-btn:hover{background:var(--gold-lt);border-color:var(--gold-lt);transform:translateY(-2px);box-shadow:0 10px 36px rgba(184,150,78,.3)}
+.topmate-btn svg{transition:transform .3s}
+.topmate-btn:hover svg{transform:translateX(3px)}
+.topmate-visual{
+  background:rgba(255,255,255,.04);border:1px solid rgba(184,150,78,.18);
+  border-radius:3px;padding:2rem;
+}
+.topmate-profile{display:flex;align-items:center;gap:1.1rem;margin-bottom:1.75rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(184,150,78,.15)}
+.topmate-avatar{
+  width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-dk),var(--gold-lt));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--navy);
+  flex-shrink:0;
+}
+.topmate-uname{font-family:'Raleway',sans-serif;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.topmate-utitle{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:var(--cream)}
+.topmate-services{display:flex;flex-direction:column;gap:.75rem}
+.topmate-service{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  background:rgba(255,255,255,.04);border:1px solid rgba(184,150,78,.12);
+  border-radius:2px;padding:.9rem 1.1rem;transition:all .3s;cursor:pointer;
+}
+.topmate-service:hover{background:rgba(184,150,78,.08);border-color:rgba(184,150,78,.28)}
+.svc-left{display:flex;align-items:center;gap:.8rem}
+.svc-icon{
+  width:34px;height:34px;border-radius:2px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.svc-name{font-family:'Raleway',sans-serif;font-size:10.5px;font-weight:600;letter-spacing:.08em;color:var(--cream)}
+.svc-dur{font-family:'EB Garamond',serif;font-size:12px;color:rgba(184,150,78,.6);font-style:italic;margin-top:2px}
+.svc-price{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--gold-lt);white-space:nowrap}
+
+/* Topic cards grid */
+.topmate-topics{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.15rem;
+}
+@media(max-width:900px){.topmate-topics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.topmate-topics{grid-template-columns:1fr}}
+.topic-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(184,150,78,.14);
+  border-radius:2px;padding:1.6rem 1.5rem;
+  transition:all .4s cubic-bezier(.2,.8,.2,1);position:relative;overflow:hidden;
+}
+.topic-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(184,150,78,.4),transparent);
+  transform:scaleX(0);transition:transform .5s;
+}
+.topic-card:hover{background:rgba(255,255,255,.08);transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.25)}
+.topic-card:hover::before{transform:scaleX(1)}
+.topic-icon{font-size:22px;margin-bottom:.9rem;display:block}
+.topic-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--cream);margin-bottom:6px}
+.topic-desc{font-family:'EB Garamond',serif;font-size:13.5px;color:rgba(238,233,220,.55);line-height:1.65;font-style:italic;margin-bottom:1rem}
+.topic-tags{display:flex;flex-wrap:wrap;gap:5px}
+.topic-tag{
+  padding:3px 11px;border-radius:1px;
+  font-family:'Raleway',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid rgba(184,150,78,.2);color:rgba(184,150,78,.7);
+  transition:all .2s;
+}
+.topic-card:hover .topic-tag{border-color:rgba(184,150,78,.4);color:var(--gold)}
+.topmate-cta-row{
+  text-align:center;margin-top:3.5rem;padding-top:3rem;
+  border-top:1px solid rgba(184,150,78,.14);
+}
+.topmate-cta-row p{font-family:'EB Garamond',serif;font-size:15px;color:rgba(238,233,220,.5);font-style:italic;margin-bottom:1.5rem}
+
+/* ════════════════════════════════════
    RESPONSIVE
 ════════════════════════════════════ */
 
@@ -727,6 +837,7 @@ footer::before{
       <a href="#projects">Leadership</a>
       <a href="#achievements">Achievements</a>
       <a href="#contact">Contact</a>
+      <a href="https://topmate.io/mehul_thapar" target="_blank" rel="noopener" class="nav-topmate">Book a Call</a>
       <a href="mailto:mehulthaparwork@gmail.com" class="nav-cta">Hire Me</a>
     </div>
     <button class="ham" id="hamBtn" aria-label="Menu">
@@ -742,6 +853,7 @@ footer::before{
     <a href="#projects" onclick="closeMob()">Leadership</a>
     <a href="#achievements" onclick="closeMob()">Achievements</a>
     <a href="#contact" onclick="closeMob()">Contact</a>
+    <a href="https://topmate.io/mehul_thapar" target="_blank" rel="noopener" onclick="closeMob()" style="color:var(--gold-dk)">◈ Book a Call — Topmate</a>
     <a href="mailto:mehulthaparwork@gmail.com" onclick="closeMob()" style="color:var(--gold)">✉ Hire Me</a>
   </div>
 </header>
@@ -752,7 +864,7 @@ footer::before{
   <!-- arch fan -->
   <div class="arch-wrap" id="archWrap" aria-hidden="true">
     <div class="arch-img" style="left:3%;top:68%;transform:rotate(-36deg)" data-r="-36deg">
-      <img src="IMG_20251014_114127.jpg.jpeg" alt="" loading="lazy"/>
+      <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1956b1030-1766565908424.png" alt="" loading="lazy"/>
     </div>
     <div class="arch-img" style="left:13%;top:38%;transform:rotate(-24deg)" data-r="-24deg">
       <img src="https://images.unsplash.com/photo-1726440464439-81579d883f5e?w=300&q=80" alt="" loading="lazy"/>
@@ -1274,7 +1386,7 @@ footer::before{
 
         <div class="edu-row">
           <div class="edu-top">
-            <div class="edu-deg">B.Com (Hons)</div>
+            <div class="edu-deg">B.Com</div>
             <div class="edu-res">8.00 CGPA</div>
           </div>
           <div class="edu-inst">Shivaji College, University of Delhi</div>
@@ -1321,9 +1433,9 @@ footer::before{
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 3.5l6.5 5 6.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           mehulthaparwork@gmail.com
         </a>
-        <a href="tel:9818109472" class="cta-a">
+        <a href="tel:+918076739390" class="cta-a">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M14 11.5c0 .3-.1.6-.2.9a2.5 2.5 0 01-.6.8c-.4.4-.8.6-1.3.6-.3 0-.7-.1-1.1-.2a11 11 0 01-1.1-.5 18 18 0 01-1.1-.8 17 17 0 01-1-1 17 17 0 01-.8-1.1 11 11 0 01-.5-1.1c-.2-.4-.2-.7-.2-1.1 0-.4.1-.7.3-1 .2-.4.5-.7.9-.9.3-.2.7-.3 1-.3.1 0 .3 0 .4.1.1 0 .3.1.4.3l1.4 2c.1.1.2.3.3.4 0 .1.1.2.1.3 0 .2-.1.3-.2.5l-.3.4c-.1.1-.1.2-.1.3 0 .1 0 .2.1.3.3.5.7 1 1.1 1.4.5.4 1 .8 1.4 1.1.1.1.2.1.3.1s.2 0 .3-.1l.4-.3c.1-.1.3-.2.5-.2.1 0 .2 0 .3.1l.4.3 1.4 1.4c.2.1.3.3.3.4.1.2.1.3.1.5z" stroke="currentColor" stroke-width="1.2"/></svg>
-          +91 98181 09472
+          +91 8076 739 390
         </a>
         <a href="https://www.linkedin.com/in/mehulthapar" target="_blank" rel="noopener" class="cta-a">
           <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="3" stroke="currentColor" stroke-width="1.4"/><path d="M5 7v5M5 5.3v.1M8 12V9a1.5 1.5 0 013 0v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
